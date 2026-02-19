@@ -4,8 +4,9 @@ motor
 pydantic
 pydantic-settings
 python-dotenv
-passlib[bcrypt]
-pyjwt
+passlib==1.7.4
+bcrypt==4.0.1
+PyJWT==2.8.0
 python-multipart
 scikit-learn
 pandas
