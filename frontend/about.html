@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>About Us - ShopManager</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.symbols.google.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec80",
+                        "primary-dark": "#0fc76d",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <!-- Navbar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-3">
+                    <div class="bg-primary size-10 rounded-lg flex items-center justify-center text-background-dark">
+                        <span class="material-symbols-outlined font-bold">inventory_2</span>
+                    </div>
+                    <div>
+                        <h1 class="text-slate-900 dark:text-white text-xl font-bold leading-none tracking-tight">
+                            ShopManager</h1>
+                    </div>
+                </a>
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+                    href="index.html#features">Features</a>
+                <a class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+                    href="index.html#pricing">Pricing</a>
+                <a class="text-sm font-semibold text-primary transition-colors" href="about.html">About Us</a>
+            </div>
+            <div class="flex items-center gap-4" id="auth-nav">
+                <a class="text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-primary transition-colors"
+                    href="login.html">Login</a>
+                <a href="register.html"
+                    class="bg-primary hover:bg-primary-dark text-background-dark px-6 py-2.5 rounded-lg text-sm font-extrabold transition-all shadow-lg shadow-primary/20">Get
+                    Started Free</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">
+                Empowering Small Businesses with <span class="text-primary">Smart Technology</span>.
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                At ShopManager, we believe that powerful tools shouldn't be complicated. We build intelligent inventory
+                solutions designed specifically for the unique needs of grocery stores, medical shops, and local
+                retailers.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-16 bg-white dark:bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div>
+                    <img src="page.jpg" alt="Global Supply Chain"
+                        class="rounded-2xl shadow-2xl hover:scale-105 transition-all duration-500 bg-white p-4">
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Our Mission</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Our journey began with a simple observation: small business owners spend too much time counting
+                    stock and not enough time growing their business. Existing software was either too expensive, too
+                    complex, or outdated.
+                </p>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                    We set out to change that. By combining modern AI with intuitive design, we created ShopManager—a
+                    platform that not only tracks what you have but helps you predict what you need.
+                </p>
+
+                <div class="grid grid-cols-2 gap-6 pt-4">
+                    <div>
+                        <div class="text-3xl font-extrabold text-primary mb-1">500+</div>
+                        <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Active Stores</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-extrabold text-primary mb-1">1M+</div>
+                        <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">Products Tracked
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Why We Do It</h2>
+                <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">We are driven by a set of core values
+                    that put our customers first.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Simplicity First</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Technology should be invisible. We design
+                        every feature to be intuitive and easy to use from day one.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined">security</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Data Privacy</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Your business data is your asset. We employ
+                        top-tier security to ensure it stays safe and private.</p>
+                </div>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+                    <div class="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined">rocket_launch</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Continuous Innovation</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">We never stop improving. We listen to our
+                        users and ship updates that make a real difference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-slate-500 dark:text-slate-500 text-sm">
+                &copy; 2024 ShopManager AI. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Auth Check Script (Reuse from index.html logic if needed, or simple redirect check) -->
+    <!-- For about page, mostly static, but nice to show logged in state if possible. 
+         Reusing script.js logic might be overkill if we just want simple "Back to Home". 
+         But let's include script.js to handle the auth-nav part if the user is logged in. -->
+    <script>
+        const API_URL = 'http://localhost:8080';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const res = await fetch(`${API_URL}/users/me`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (res.ok) {
+                        const user = await res.json();
+                        const authNav = document.getElementById('auth-nav');
+
+                        // Check role for link
+                        const isAdmin = user.role === 'admin' || user.username === 'Admin';
+                        const link = isAdmin ? 'admin.html' : 'dashboard.html';
+                        const text = isAdmin ? 'Admin Panel' : 'Dashboard';
+
+                        if (authNav) {
+                            authNav.innerHTML = `
+                                <a href="${link}" class="bg-primary hover:bg-primary-dark text-background-dark px-5 py-2 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                                    ${text}
+                                </a>
+                            `;
+                        }
+                    }
+                } catch (e) {
+                    console.error("Auth check failed", e);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

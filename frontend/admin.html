@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Dashboard - ShopManager</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec80",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: { "display": ["Manrope", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Side Navigation Bar -->
+        <aside
+            class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark flex flex-col fixed h-full z-30 transition-transform -translate-x-full lg:translate-x-0"
+            id="sidebar">
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="bg-primary size-10 rounded-lg flex items-center justify-center text-background-dark">
+                        <span class="material-symbols-outlined">admin_panel_settings</span>
+                    </div>
+                    <div>
+                        <h1 class="text-slate-900 dark:text-white text-base font-bold leading-none">ShopManager</h1>
+                        <p class="text-primary text-xs font-semibold mt-1 uppercase tracking-wider">Admin Console</p>
+                    </div>
+                </div>
+                <nav class="flex flex-col gap-2" id="sidebar-nav">
+                    <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        href="dashboard.html">
+                        <span class="material-symbols-outlined">dashboard</span>
+                        <span class="text-sm font-semibold">Store Dashboard</span>
+                    </a>
+                    <a class="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20"
+                        href="#" data-view="users">
+                        <span class="material-symbols-outlined">group</span>
+                        <span class="text-sm font-semibold">Manage Users</span>
+                    </a>
+                    <button onclick="logout()"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors mt-4 w-full text-left">
+                        <span class="material-symbols-outlined">logout</span>
+                        <span class="text-sm font-semibold">Logout</span>
+                    </button>
+                </nav>
+            </div>
+            <div class="mt-auto p-6 border-t border-slate-100 dark:border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div id="user-image-container"
+                        class="bg-primary/20 rounded-full size-10 border-2 border-primary/20 flex items-center justify-center text-primary overflow-hidden">
+                        <span id="user-icon-placeholder" class="material-symbols-outlined">person</span>
+                        <img id="user-profile-img" src="" class="hidden w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col">
+                        <p id="user-display-name" class="text-sm font-bold text-slate-900 dark:text-white">Admin</p>
+                        <p class="text-xs text-slate-500">System Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-64 flex flex-col">
+            <!-- Top Nav Bar -->
+            <header
+                class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <button id="sidebar-toggle"
+                            class="lg:hidden p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+                            <span class="material-symbols-outlined">menu</span>
+                        </button>
+                        <h2 id="view-title" class="text-xl font-bold text-slate-900 dark:text-white">Manage Users</h2>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="index.html"
+                            class="p-2 text-slate-400 hover:text-primary transition-colors flex items-center gap-2 mr-2">
+                            <span class="material-symbols-outlined">home</span>
+                            <span class="text-sm font-bold hidden md:inline">Home</span>
+                        </a>
+                        <button onclick="logout()"
+                            class="px-4 py-2 text-sm font-bold text-rose-500 border border-rose-500/20 rounded-lg hover:bg-rose-50 transition-all">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="p-6 space-y-6 max-w-7xl mx-auto w-full">
+                <!-- User Management Section -->
+                <section id="users" class="view space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">System Users</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">View and manage staff access.</p>
+                        </div>
+                        <button id="add-user-btn"
+                            class="flex items-center gap-2 px-5 py-2 bg-primary text-background-dark rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
+                            <span class="material-symbols-outlined text-lg">person_add</span>
+                            Add New User
+                        </button>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700">
+                                        <th
+                                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                            User</th>
+                                        <th
+                                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                            Email</th>
+                                        <th
+                                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                                            Role</th>
+                                        <th
+                                            class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">
+                                            Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user-list" class="divide-y divide-slate-100 dark:divide-slate-700">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="mt-auto py-8 px-6 text-center text-slate-400 text-xs font-medium">
+                © 2024 ShopManager AI • Admin Console
+            </footer>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="user-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div
+            class="bg-white dark:bg-slate-800 rounded-2xl w-full max-w-md shadow-2xl border border-slate-200 dark:border-slate-700 p-8">
+            <h2 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Add New User</h2>
+            <form id="add-user-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Username</label>
+                    <input type="text" id="new-username" required
+                        class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Email</label>
+                    <input type="email" id="new-email" required
+                        class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Password</label>
+                    <input type="password" id="new-password" required
+                        class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Role</label>
+                    <select id="new-role" required
+                        class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary outline-none">
+                        <option value="staff">Staff</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="flex gap-4 pt-4">
+                    <button type="button" id="close-user-modal"
+                        class="flex-1 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit"
+                        class="flex-1 px-4 py-2 rounded-lg bg-primary text-background-dark text-sm font-bold hover:opacity-90 transition-all shadow-lg shadow-primary/20">Create
+                        User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

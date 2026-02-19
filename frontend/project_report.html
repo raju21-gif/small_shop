@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopManager AI - Project Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white;
+                color: black;
+            }
+
+            .shadow-xl {
+                box-shadow: none;
+            }
+
+            .bg-slate-50 {
+                background: white;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 p-8 md:p-12">
+
+    <!-- Floating Print Button -->
+    <div class="fixed bottom-8 right-8 no-print">
+        <button onclick="window.print()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-full shadow-xl flex items-center gap-2 transition-all transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print Report
+        </button>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white p-10 rounded-2xl shadow-xl border border-slate-200">
+
+        <!-- Header -->
+        <header class="border-b border-slate-100 pb-8 mb-8 text-center">
+            <h1 class="text-4xl font-extrabold text-slate-900 mb-2">ShopManager AI</h1>
+            <p class="text-xl text-slate-500 font-light">Smart Inventory & Predictive Marketplace System</p>
+        </header>
+
+        <!-- Abstract -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-4 flex items-center gap-2">
+                <span class="bg-blue-100 p-2 rounded-lg">📄</span>
+                Abstract
+            </h2>
+            <p class="text-slate-700 leading-relaxed text-justify">
+                <strong>ShopManager AI</strong> is a comprehensive full-stack web application designed to modernize
+                small business operations through intelligent automation. Built with a robust <strong>FastAPI
+                    (Python)</strong> backend and a reactive <strong>JavaScript/TailwindCSS</strong> frontend, the
+                system bridges the gap between traditional inventory management and modern e-commerce.
+            </p>
+            <p class="text-slate-700 leading-relaxed text-justify mt-4">
+                The core innovation lies in its dual-facing architecture: an <strong>Admin Dashboard</strong> for
+                business owners to manage stock, visualize sales trends, and leverage <strong>AI-driven demand
+                    forecasting</strong>, and a <strong>Customer Marketplace</strong> where users can browse real-time
+                inventory and place purchase requests. The application features a secure, role-based approval workflow,
+                ensuring that high-value transactions are verified before stock is deducted. By integrating machine
+                learning for stock prediction and real-time synchronization between inventory and sales channels,
+                ShopManager AI minimizes stockouts, prevents overstocking, and streamlines the entire retail lifecycle.
+            </p>
+        </section>
+
+        <!-- Data Flow Diagram (DFD) -->
+        <section class="mb-12 page-break-inside-avoid">
+            <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center gap-2">
+                <span class="bg-blue-100 p-2 rounded-lg">🔄</span>
+                Data Flow Diagram (DFD)
+            </h2>
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex justify-center">
+                <div class="mermaid">
+                    graph TD
+                    subgraph "External Entities"
+                    User([Customers / Staff])
+                    Admin([Administrator])
+                    end
+
+                    subgraph "ShopManager AI System"
+                    Marketplace[Marketplace Interface]
+                    AdminPanel[Admin Dashboard]
+                    Auth[Authentication Module]
+                    OrderEngine[Order Processing Engine]
+                    AIEngine[AI Prediction Engine]
+                    end
+
+                    subgraph "Data Store"
+                    DB[(MongoDB Database)]
+                    end
+
+                    %% Flows
+                    User -->|1. Login Credentials| Auth
+                    Admin -->|1. Login Credentials| Auth
+                    Auth -->|2. Verify Token| DB
+
+                    User -->|3. Browse Products| Marketplace
+                    Marketplace -->|4. Fetch Stock Data| DB
+
+                    User -->|5. Buy Request| OrderEngine
+                    OrderEngine -->|6. Create Pending Order| DB
+
+                    Admin -->|7. View Requests| AdminPanel
+                    AdminPanel -->|8. Fetch Pending Orders| DB
+
+                    Admin -->|9. Approve Order| OrderEngine
+                    OrderEngine -->|10. Update Status & Decrement Stock| DB
+
+                    Admin -->|11. Upload New Stock| AdminPanel
+                    AdminPanel -->|12. Sync to Marketplace| DB
+
+                    Admin -->|13. Request Forecast| AIEngine
+                    DB -->|14. Historical Sales Data| AIEngine
+                    AIEngine -->|15. Future Stock Prediction| AdminPanel
+
+                    classDef entity fill:#e0f2fe,stroke:#0284c7,stroke-width:2px;
+                    classDef process fill:#f0fdf4,stroke:#16a34a,stroke-width:2px;
+                    classDef store fill:#fef3c7,stroke:#d97706,stroke-width:2px;
+
+                    class User,Admin entity;
+                    class Marketplace,AdminPanel,Auth,OrderEngine,AIEngine process;
+                    class DB store;
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-600 mb-6 flex items-center gap-2">
+                <span class="bg-blue-100 p-2 rounded-lg">🚀</span>
+                Key Features
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">🔐 Secure Authentication</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>JWT-Based Secure Sessions</li>
+                        <li>Role-Based Access Control (RBAC)</li>
+                        <li>Separate views for Admin & Users</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">📦 Smart Inventory Sync</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Dual-Channel Entry (Backend -> Marketplace)</li>
+                        <li>Real-Time Stock Updates</li>
+                        <li>Visual Low-Stock Indicators</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">✅ Order Moderation Workflow</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>"Pending" status for new requests</li>
+                        <li>Admin verification required for deduction</li>
+                        <li>Prevents accidental stock errors</li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-50 p-6 rounded-xl border border-slate-100">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">🤖 AI Demand Forecasting</h3>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Linear Regression Analysis</li>
+                        <li>7-Day Future Demand Prediction</li>
+                        <li>Actionable Re-stocking Insights</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-400 text-sm border-t border-slate-100 pt-8">
+            <p>Generated by ShopManager AI System &bull; 2024</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
