@@ -762,12 +762,18 @@ async function buyProduct(productId, productName) {
 async function loadAdminOrders() {
     try {
         const res = await fetch(`${API_URL}/admin/orders`, { headers: getHeaders() });
-        const orders = await res.json();
         const tbody = document.getElementById('admin-order-list');
         if (!tbody) return;
 
-        // Temporary Debug: Show raw JSON if empty or malformed
-        if (!orders || orders.length === 0) {
+        if (!res.ok) {
+            const error = await res.json().catch(() => ({ detail: 'Unknown error' }));
+            tbody.innerHTML = `<tr><td colspan="6" class="text-center py-12 text-rose-500 font-bold">⚠️ Error: ${error.detail || 'Access Denied'}</td></tr>`;
+            return;
+        }
+
+        const orders = await res.json();
+
+        if (!Array.isArray(orders) || orders.length === 0) {
             tbody.innerHTML = `<tr><td colspan="6" class="text-center py-12 text-slate-400">No orders yet. (Fetched from: ${API_URL}/admin/orders)</td></tr>`;
             return;
         }
